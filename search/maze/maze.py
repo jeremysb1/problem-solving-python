@@ -3,7 +3,7 @@ from tkinter.tix import CELL
 from typing import List, NamedTuple, Callable, Optional
 import random
 from math import sqrt
-from generic_seach import dfs, bfs, node_to_path, astar, Node
+from generic_search import dfs, bfs, node_to_path, astar, Node
 
 class Cell(str, Enum):
     EMPTY = " "
