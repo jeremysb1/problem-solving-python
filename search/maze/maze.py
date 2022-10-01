@@ -43,4 +43,9 @@ class Maze:
 
     # return a nicely formatted version of the maze for printing
     def __str__(self) -> str:
-        pass
+        output: str = ""
+        for row in self._grid:
+            output += "".join([c.value for c in row]) + "\n"
+        return output
+    
+    
