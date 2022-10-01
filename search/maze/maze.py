@@ -51,3 +51,4 @@ class Maze:
     def goal_test(self, ml: MazeLocation) -> bool:
         return ml == self.goal
     
+    
