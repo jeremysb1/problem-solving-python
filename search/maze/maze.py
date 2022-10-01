@@ -63,3 +63,10 @@ class Maze:
             locations.append(MazeLocation(ml.row, ml.columns - 1))
         return locations
     
+    def mark(self, path: List[MazeLocation]):
+        for maze_location in path:
+            self._grid[maze_location.row][maze_location.column] = Cell.EMPTY
+            self._grid[self.start.row][self.start.column] = Cell.START
+            self._grid[self.goal.row][self.goal.column] = Cell.GOAL
+    
+    
