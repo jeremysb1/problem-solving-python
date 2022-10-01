@@ -8,7 +8,7 @@ Gene = List[Codon] #type alias for genes
 
 gene_str: str = "ACGTGGCTCTCTAACGTACGTACGTACGGGGTTTATATATACCCTAGGACTCCCTTT"
 
-def gene_to_str(s: str) -> Gene:
+def string_to_gene(s: str) -> Gene:
     gene: Gene = []
     for i in range(0, len(s), 3):
         if (i + 2) >= len(s):
@@ -17,4 +17,6 @@ def gene_to_str(s: str) -> Gene:
         codon: Codon = (Nucleotide[s[i]], Nucleotide[s[i + 1]], Nucleotide[s[i + 2]])
         gene.append(codon)  # add codon to gene
     return gene
+
+my_gene: Gene = string_to_gene(gene_str)
 
