@@ -1,5 +1,6 @@
 from typing import Generic, TypeVar, Dict, List, Optional
 from abc import ABC, abstractmethod
+from unittest import result
 
 V = TypeVar('V')
 D = TypeVar('D')
@@ -42,3 +43,24 @@ class CSP(Generic[V, D]):
             if not constraint.satisfied(assignment):
                 return False
         return True
+    
+    def backtracking_search(self, assignment: Dict[V, D] = {}) -> Optional[Dict[V, D]]:
+        # assignment is complete if every variable is assigned (our base case)
+        if len(assignment) == len(self.variables):
+            return assignment
+        
+        # get all variables in the CSP but not in the assignment
+        unnasigned: List[V] = [v for v in self.variables if v not in assignment]
+
+        # get every possible domain value of the first unassigned variable
+        first: V = unnasigned[0]
+        for value in self.domains[first]:
+            local_assignment = assignment.copy()
+            local_assignment[first] = value
+            # if we're still consistent, we recurse (continued)
+            if self.consistent(first, local_assignment):
+                result: Optional[Dict[V, D]] = self.backtracking_search(local_assignment)
+                # if we didn't find the result, we start backtracking
+                if result is not None:
+                    return result
+        return None
