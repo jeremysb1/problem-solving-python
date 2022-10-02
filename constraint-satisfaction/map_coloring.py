@@ -1,7 +1,6 @@
 from csp import Constraint, CSP
 from typing import Dict, List, Optional
 
-
 class MapColoringConstraint(Constraint[str, str]):
     def __init__(self, place1: str, place2: str) -> None:
         super().__init__([place1, place2])
@@ -16,7 +15,6 @@ class MapColoringConstraint(Constraint[str, str]):
         # check the color assigned to place1 is not the same as the
         # color assigned to place2
         return assignment[self.place1] != assignment[self.place2]
-
 
 if __name__ == "__main__":
     variables: List[str] = ["Western Australia", "Northern Territory", "South Australia",
