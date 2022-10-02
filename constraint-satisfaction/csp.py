@@ -37,3 +37,8 @@ class CSP(Generic[V, D]):
     
     # Check if the value assignment is consistent by checking all constraints
     # for the given variable against it
+    def consistent(self, variable: V, assignment: Dict[V, D]) -> bool:
+        for constraint in self.constraints[variable]:
+            if not constraint.satisfied(assignment):
+                return False
+        return True
