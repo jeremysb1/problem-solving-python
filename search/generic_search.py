@@ -120,6 +120,8 @@ class Queue(Generic[T]):
     def __repr__(self) -> str:
         return repr(self._container)
 
+
+
 if __name__ == "__main__":
     print(linear_contains([1, 5, 15, 15, 15, 15, 20], 5))  # True
     print(binary_contains(["a", "d", "e", "f", "z"], "f"))  # True
