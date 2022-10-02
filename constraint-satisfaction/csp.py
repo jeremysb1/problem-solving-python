@@ -12,6 +12,9 @@ class Constraint(Generic[V, D], ABC):
 
     # Must be overridden by subclasses
     @abstractmethod
-    def satsified(self, assigment: Dict[V, D]) -> bool:
+    def satisfied(self, assigment: Dict[V, D]) -> bool:
         ...
-    
+
+# A constraint satisfaction problem consists of variables of type V
+# that have ranges of values known as domains of type D and constraints
+# that determine whether a particular variable's domain selection is valid
