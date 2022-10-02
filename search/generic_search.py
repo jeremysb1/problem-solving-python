@@ -120,7 +120,27 @@ class Queue(Generic[T]):
     def __repr__(self) -> str:
         return repr(self._container)
 
+def bfs(initial: T, goal_test: Callable[[T], bool], successors: Callable[[T], List[T]]) -> Optional[Node[T]]:
+    # frontier is where we've yet to go
+    frontier: Queue[Node[T]] = Queue()
+    frontier.push(Node(initial, None))
+    #explored is where we've been
+    explored: Set[T] = {initial}
 
+    #keep going is where we need to explore
+    while not frontier.empty:
+        current_node: Node[T] = frontier.pop()
+        current_state: T = current_node.state
+        # if we found the goal we are done
+        if goal_test(current_state):
+            return current_node
+        # check where we can go next and haven't explored
+        for child in successors(current_state):
+            if child in explored:  #skip children we have already explored
+                continue
+            explored.add(child)
+            frontier.push(Node(child, current_node))
+    return None  # went through everything and never found goal
 
 if __name__ == "__main__":
     print(linear_contains([1, 5, 15, 15, 15, 15, 20], 5))  # True
