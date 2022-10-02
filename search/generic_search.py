@@ -142,6 +142,23 @@ def bfs(initial: T, goal_test: Callable[[T], bool], successors: Callable[[T], Li
             frontier.push(Node(child, current_node))
     return None  # went through everything and never found goal
 
+class PriorityQueue(Generic[T]):
+    def __init__(self) -> None:
+        self._container: List[T] = [T]
+    
+    @property
+    def empty(self) -> bool:
+        return not self._container  # not is true for empty container
+    
+    def push(self, item: T) -> None:
+        heappush(self._container, item) # in by property
+    
+    def pop(self) -> T:
+        return heappop(self._container)  # out by priority
+    
+    def __repr__(self) -> str:
+        return repr(self._container)
+
 if __name__ == "__main__":
     print(linear_contains([1, 5, 15, 15, 15, 15, 20], 5))  # True
     print(binary_contains(["a", "d", "e", "f", "z"], "f"))  # True
