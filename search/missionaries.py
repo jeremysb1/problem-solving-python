@@ -18,4 +18,15 @@ class MCState:
                 "The boat is on the {} bank.")\
             .format(self.wm, self.wc, self.em, self.ec, ("west" if self.boat else "east"))
     
+    def goal_test(self) -> bool:
+        return self.is_legal and self.em == MAX_NUM and self.ec == MAX_NUM
+
+    @property
+    def is_legal(self) -> bool:
+        if self.wm < self.wc and self.wm > 0:
+            return False
+        if self.em < self.ec and self.em > 0:
+            return False
+        return True
+    
     
