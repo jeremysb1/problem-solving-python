@@ -34,3 +34,6 @@ class CSP(Generic[V, D]):
                 raise LookupError("Variable in constraint not in CSP.")
             else:
                 self.constraints[variable].append(constraint)
+    
+    # Check if the value assignment is consistent by checking all constraints
+    # for the given variable against it
