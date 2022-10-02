@@ -166,21 +166,20 @@ def astar(initial: T, goal_test: Callable[[T], bool], successors: Callable[[T], 
     # explored is where we've been
     explored: Dict[T, float] = {initial: 0.0}
 
-    #keep going while there is more to explore
+    # keep going while there is more to explore
     while not frontier.empty:
         current_node: Node[T] = frontier.pop()
         current_state: T = current_node.state
-        #if we found the goal we are done
+        # if we found the goal, we're done
         if goal_test(current_state):
             return current_node
         # check where we can go next and haven't explored
         for child in successors(current_state):
-            new_cost: current_nodec.st + 1  # 1 assumes a grid, need a cost function for more sophisticated apps
+            new_cost: float = current_node.cost + 1  # 1 assumes a grid, need a cost function for more sophisticated apps
 
             if child not in explored or explored[child] > new_cost:
-                explored[cost] = new_cost
+                explored[child] = new_cost
                 frontier.push(Node(child, current_node, new_cost, heuristic(child)))
-    
     return None  # went through everything and never found goal
 
 if __name__ == "__main__":
