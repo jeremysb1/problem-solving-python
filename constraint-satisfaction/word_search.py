@@ -40,3 +40,15 @@ def generate_domain(word: str, grid: Grid) -> List[List[GridLocation]]:
                     if col - length >= 0:
                         domain.append([GridLocation(r, col - (r - row)) for r in rows])
     return domain
+
+class WordSearchConstraint(Constraint[str, List[GridLocation]]):
+    def __init__(self, words: List[str]) -> None:
+        super().__init__(words)
+        self.words: List[str] = words
+
+    def satisfied(self, assigment: Dict[str, List[GridLocation]]) -> bool:
+        # if there are any duplicates grid locations, then there is an overlap
+        all_locations = [locs for values in assigment.values() for locs in values]
+        return len(set(all_locations)) == len(all_locations)
+
+
