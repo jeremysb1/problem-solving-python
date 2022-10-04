@@ -27,3 +27,16 @@ class SendMoreMoneyConstraint(Constraint[str, int]):
             return send + more == money
         return True  # no conflict
 
+if __name__ == "__main__":
+    letters: List[str] = ["S", "E", "N", "D", "M", "O", "R", "Y"]
+    possible_digits: Dict[str, List[int]] = {}
+    for letter in letters:
+        possible_digits[letter] = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    possible_digits["M"] = [1]  # so we don't get answers starting with a 0
+    csp: CSP[str, int] = CSP(letters, possible_digits)
+    csp.add_constraint(SendMoreMoneyConstraint(letters))
+    solution: Optional[Dict[str, int]] = csp.backtracking_search()
+    if solution is None:
+        print("No solution found!")
+    else:
+        print(solution)
