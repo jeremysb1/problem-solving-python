@@ -44,4 +44,5 @@ class Graph(Generic[V]):
         return self._vertices[index]
     
     # Find the index of a vertex in the graph
-    
+    def index_of(self, vertex: V) -> int:
+        return self._vertices.index(vertex)
