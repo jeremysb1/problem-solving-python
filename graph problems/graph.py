@@ -23,4 +23,8 @@ class Graph(Generic[V]):
         self._edges.append([])  # add empty list for containing edges
         return self.vertex_count - 1  # return index of added vertex
 
-    
+    # This is an undirected graph, so we always add edges in both directions
+    def add_edge(self, edge: Edge) -> None:
+        self._edges[edge.u].append(edge)
+        self._edges[edge.v].append(edge.reversed())
+        
