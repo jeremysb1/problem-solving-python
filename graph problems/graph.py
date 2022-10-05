@@ -1,5 +1,6 @@
 from distutils.command.build_scripts import first_line_re
 from modulefinder import EXTENDED_ARG
+from operator import index
 from typing import TypeVar, Generic, List, Optional
 from edge import Edge
 
@@ -46,3 +47,7 @@ class Graph(Generic[V]):
     # Find the index of a vertex in the graph
     def index_of(self, vertex: V) -> int:
         return self._vertices.index(vertex)
+    
+    # Find the vertices that a vertex at some index is connected to
+    def neighbors_for_index(self, vertex: V) -> List[V]:
+        return list(map(self.vertex_at, [e.v for e in self._edges[index]]))
