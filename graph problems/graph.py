@@ -42,3 +42,6 @@ class Graph(Generic[V]):
     # Find the vertex at a specific index
     def vertex_at(self, index: int) -> V:
         return self._vertices[index]
+    
+    # Find the index of a vertex in the graph
+    
