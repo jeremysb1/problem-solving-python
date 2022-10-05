@@ -27,4 +27,10 @@ class Graph(Generic[V]):
     def add_edge(self, edge: Edge) -> None:
         self._edges[edge.u].append(edge)
         self._edges[edge.v].append(edge.reversed())
-        
+    
+    # Add an edge using vertex indices (convenience method)
+    def add_edge_by_indices(self, u: int, v: int) -> None:
+        edge: Edge = Edge(u, v)
+        self.add_edge(edge)
+    
+    
