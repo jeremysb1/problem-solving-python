@@ -39,4 +39,6 @@ class Graph(Generic[V]):
         v: int = self._vertices.index(second)
         self.add_edge_by_indices(u, v)
     
-    
+    # Find the vertex at a specific index
+    def vertex_at(self, index: int) -> V:
+        return self._vertices[index]
