@@ -52,4 +52,7 @@ class Graph(Generic[V]):
     def neighbors_for_index(self, index: int) -> List[V]:
         return list(map(self.vertex_at, [e.v for e in self._edges[index]]))
     
+    # Look up a vertice's index and find its neighbors (convenience method)
+    def neighbors_for_vertex(self, vertex: V) -> List[V]:
+        return self.neighbors_for_index(self.index_of(vertex))
     
