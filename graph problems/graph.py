@@ -49,5 +49,7 @@ class Graph(Generic[V]):
         return self._vertices.index(vertex)
     
     # Find the vertices that a vertex at some index is connected to
-    def neighbors_for_index(self, vertex: V) -> List[V]:
+    def neighbors_for_index(self, index: int) -> List[V]:
         return list(map(self.vertex_at, [e.v for e in self._edges[index]]))
+    
+    
