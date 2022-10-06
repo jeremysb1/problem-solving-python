@@ -59,3 +59,8 @@ class Graph(Generic[V]):
     # Return all of the edges associated with a vertex at some index
     def edges_for_index(self, index: int) -> List[Edge]:
         return self._index[index]
+
+    # Look up the index of a vertex and return its edges (convenience method)
+    def edges_for_vertex(self, vertex: V) -> List[Edge]:
+        return self.edges_for_index(self.index_of(vertex))
+    
