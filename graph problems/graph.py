@@ -103,3 +103,16 @@ if __name__ == "__main__":
     city_graph.add_edge_by_vertices("New York", "Philadelphia")
     city_graph.add_edge_by_vertices("Philadelphia", "Washington")
     print(city_graph)
+
+# reuse BFS from search 
+import sys
+sys.path.insert(0, '..')
+from search.generic_search import bfs, Node, node_to_path
+
+bfs_result: Optional[Node[V]] = bfs("Boston", lambda x: x == "Miami", city_graph.neighbors_for_vertex)
+if bfs_result is None:
+    print("No solution is found for bfs search.")
+else:
+    path: List[V] = node_to_path(bfs_result)
+    print("Path from Boston to Miami:")
+    print(path)
