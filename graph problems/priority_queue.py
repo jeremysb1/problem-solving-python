@@ -11,4 +11,5 @@ class PriorityQueue(Generic[T]):
     def empty(self) -> bool:
         return not self._container  # not is true for every container
     
-    
+    def push(self, item: T) -> None:
+        heappush(self._container, item)  # in by priority
