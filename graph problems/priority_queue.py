@@ -13,3 +13,6 @@ class PriorityQueue(Generic[T]):
     
     def push(self, item: T) -> None:
         heappush(self._container, item)  # in by priority
+    
+    def pop(self) -> None:
+        return heappop(self._container)  # out by priority
