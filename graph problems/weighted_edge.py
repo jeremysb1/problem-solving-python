@@ -6,4 +6,5 @@ from edge import Edge
 class WeightedEdge(Edge):
     weight: float
 
-    
+    def reversed(self) -> WeightedEdge:
+        return WeightedEdge(self.v, self.u, self.weight)
