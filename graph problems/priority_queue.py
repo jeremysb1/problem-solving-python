@@ -16,3 +16,6 @@ class PriorityQueue(Generic[T]):
     
     def pop(self) -> None:
         return heappop(self._container)  # out by priority
+    
+    def __repr__(self) -> str:
+        return repr(self._container)
