@@ -23,3 +23,9 @@ class WeightedGraph(Generic[V], Graph[V]):
         for edge in self.edges_for_index(index):
             distance_tuples.append((self.vertex_at(edge.v), edge.weight))
         return distance_tuples
+
+    def __str__(self) -> str:
+        desc: str = ""
+        for i in range(self.vertex_count):
+            desc += f"{self.vertex_at(i)} -> {self.neighbors_for_index_with_weights(i)}\n"
+        return desc
