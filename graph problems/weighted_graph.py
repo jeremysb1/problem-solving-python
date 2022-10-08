@@ -12,3 +12,8 @@ class WeightedGraph(Generic[V], Graph[V]):
     def add_edge_by_indices(self, u: int, v: int, weight: float) -> None:
         edge: WeightedEdge = WeightedEdge(u, v, weight)
         self.add_edge(edge)  #call superclass version
+    
+    def add_edge_by_vertices(self, first: V, second: V, weight: float) -> None:
+        u: int = self._vertices.index(first)
+        v: int = self._vertices.index(second)
+        self.add_edge_by_indices(u, v, weight)
