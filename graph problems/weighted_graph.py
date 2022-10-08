@@ -17,3 +17,9 @@ class WeightedGraph(Generic[V], Graph[V]):
         u: int = self._vertices.index(first)
         v: int = self._vertices.index(second)
         self.add_edge_by_indices(u, v, weight)
+    
+    def neighbors_for_index_with_weight(self, index: int) -> List[Tuple[V, float]]:
+        distance_tuples: List[Tuple[V, float]] = []
+        for edge in self.edges_for_index(index):
+            distance_tuples.append((self.vertex_at(edge.v), edge.weight))
+        return distance_tuples
