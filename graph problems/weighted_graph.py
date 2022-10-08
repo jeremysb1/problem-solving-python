@@ -9,4 +9,6 @@ class WeightedGraph(Generic[V], Graph[V]):
         self._vertices: List[V] = vertices
         self._edges: List[List[WeightedEdge]] = [[] for _ in vertices]
 
-        
+    def add_edge_by_indices(self, u: int, v: int, weight: float) -> None:
+        edge: WeightedEdge = WeightedEdge(u, v, weight)
+        self.add_edge(edge)  #call superclass version
