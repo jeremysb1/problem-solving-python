@@ -16,4 +16,7 @@ class DataPoint:
         differences: List[float] = [(x - y) ** 2 for x, y in combined]
         return sqrt(sum(differences))
     
-    
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, DataPoint):
+            return NotImplemented
+        return self.dimensions == other.dimensions
