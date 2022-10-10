@@ -14,3 +14,12 @@ def zscores(original: Sequence[float]) -> List[float]:
         return [0] * len(original)
     return [(x - avg) / std for x in original]
 
+Point = TypeVar('Point', bound=DataPoint)
+
+class KMeans(Generic[Point]):
+    @dataclass
+    class Cluster:
+        points: List[Point]
+        centroid: DataPoint
+    
+    
