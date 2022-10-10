@@ -45,4 +45,22 @@ def dijkstra(wg: WeightedGraph[V], root: V) -> Tuple[List[Optional[float]], Dict
     
     return distances, path_dict
 
+# Helper function to get easier access to dijkstra results
+def distance_array_to_vertex_dict(wg: WeightedGraph[V], distances: List[Optional[float]]) -> Dict[V, Optional[float]]:
+    distance_dict: Dict[V, Optional[float]] = {}
+    for i in range(len(distances)):
+        distance_dict[wg.vertex_at(i)] = distances[i]
+    return distance_dict
 
+# Takes a dictionary of edges to reach each node and returns a list of
+# edges that goes from `start` to `end`
+def path_dict_to_path(start: int, end: int, path_dict: Dict[int, WeightedEdge]) -> WeightedPath:
+    if len(path_dict) == 0:
+        return []
+    edge_path = WeightedPath = []
+    e: WeightedEdge = path_dict[end]
+    edge_path.append(e)
+    while e.u != start:
+        e = path_dict[e.u]
+        edge_path.append(e)
+    return list(reversed(edge_path))
