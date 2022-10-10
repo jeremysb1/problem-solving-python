@@ -11,4 +11,9 @@ class DataPoint:
     def num_dimensions(self) -> int:
         return len(self.dimensions)
     
+    def distance(self, other: DataPoint) -> float:
+        combined: Iterator[Tuple[float, float]] = zip(self.dimensions, other.dimensions)
+        differences: List[float] = [(x - y) ** 2 for x, y in combined]
+        return sqrt(sum(differences))
+    
     
