@@ -7,4 +7,8 @@ class DataPoint:
         self._originals: Tuple[float, ...] = Tuple(initial)
         self.dimensions: Tuple[float, ...] = Tuple(initial)
 
+    @property
+    def num_dimensions(self) -> int:
+        return len(self.dimensions)
+    
     
