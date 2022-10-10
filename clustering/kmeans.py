@@ -22,4 +22,15 @@ class KMeans(Generic[Point]):
         points: List[Point]
         centroid: DataPoint
     
-    
+    def __init__(self, k: int, points: List[Point]) -> None:
+        if k < 1:  # k-means can't do negative or zero clusters
+            raise ValueError("k must be >= 1")
+        self._points: List[Point] = points
+        self._zscore_normalize()
+        # initialize empty clusters with random centroids
+        self._clusters: List[KMeans.Cluster] = []
+        for _ in range(k):
+            rand_point: DataPoint = self._random_point()
+            cluster: KMeans.Cluster = KMeans.Cluster([], rand_point)
+            self._clusters.append(cluster)
+        
