@@ -37,3 +37,6 @@ class KMeans(Generic[Point]):
     @property
     def _centroids(self) -> List[DataPoint]:
         return [x.centroid for x in self._clusters]
+    
+    def _dimension_slice(self, dimension: int) -> List[float]:
+        return [x.dimensions[dimension] for x in self._points]
