@@ -49,3 +49,11 @@ class KMeans(Generic[Point]):
                 zscored[index].append(zscore)
         for i in range(len(self._points)):
             self._points[i].dimensions = tuple(zscored[i])
+
+    def _random_point(self) -> DataPoint:
+        rand_dimensions = List[float] = []
+        for dimension in range(self._points[0].num_dimensions):
+            values: List[float] = self._dimension_slice(dimension)
+            rand_value: float = uniform(min(values), max(values))
+            rand_dimensions.append(rand_value)
+        return DataPoint(rand_dimensions)
