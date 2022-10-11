@@ -57,3 +57,11 @@ class KMeans(Generic[Point]):
             rand_value: float = uniform(min(values), max(values))
             rand_dimensions.append(rand_value)
         return DataPoint(rand_dimensions)
+
+    # Find the closest cluster centroid to each point and assign the point to that cluster
+    def _assign_clusters(self) -> None:
+        for point in self._points:
+            closest: DataPoint = min(self._centroids, key=partial(DataPoint.distance, point))
+            idx: int = self._centroids.index(closest)
+            cluster: KMeans.Cluster = self._clusters[idx]
+            cluster.points.append(point)
