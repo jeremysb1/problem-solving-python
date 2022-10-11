@@ -40,3 +40,12 @@ class KMeans(Generic[Point]):
     
     def _dimension_slice(self, dimension: int) -> List[float]:
         return [x.dimensions[dimension] for x in self._points]
+
+    def _zscore_normalize(self) -> None:
+        zscored: List[List[float]] = [[] for _ in range(len(self._points))]
+        for dimension in range(self._points[0].num_dimensions):
+            dimension_slice: List[float] = self._dimension_slice(dimension)
+            for index, zscore in enumerate(zscores(dimension_slice)):
+                zscored[index].append(zscore)
+        for i in range(len(self._points)):
+            self._points[i].dimensions = tuple(zscored[i])
