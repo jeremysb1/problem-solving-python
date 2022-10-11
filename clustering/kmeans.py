@@ -65,3 +65,14 @@ class KMeans(Generic[Point]):
             idx: int = self._centroids.index(closest)
             cluster: KMeans.Cluster = self._clusters[idx]
             cluster.points.append(point)
+
+    # Find the center of each cluster and move the centroid to there
+    def _generate_centroids(self) -> None:
+        for cluster in self._clusters:
+            if len(cluster.points) == 0:  # keep the same centroid if no points
+                continue
+            means: List[float] = []
+            for dimension in range(cluster.points[0].num_dimensions):
+                dimension_slice: List[float] = [p.dimensions[dimension] for p in cluster.points]
+                means.append(mean(dimension_slice))
+            cluster.centroid = DataPoint(means)
