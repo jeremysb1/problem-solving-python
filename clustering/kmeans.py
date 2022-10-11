@@ -76,3 +76,15 @@ class KMeans(Generic[Point]):
                 dimension_slice: List[float] = [p.dimensions[dimension] for p in cluster.points]
                 means.append(mean(dimension_slice))
             cluster.centroid = DataPoint(means)
+    
+    def run(self, max_iterations: int = 100) -> List[KMeans.Cluster]:
+        for iteration in range(max_iterations):
+            for cluster in self._clusters:
+                cluster.points.clear()
+            self._assign_clusters()
+            old_centroids: List[DataPoint] = deepcopy(self._centroids)
+            self._generate_centroids()
+            if old_centroids == self._centroids:
+                print(f"Converged after {iteration} iterations")
+                return self._clusters
+        return self._clusters
