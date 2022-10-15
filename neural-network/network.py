@@ -24,3 +24,5 @@ class Network:
     # as input to the second, second to the third, etc.
     def outputs(self, imput: List[float]) -> List[float]:
         return reduce(lambda inputs, layer: layer.outputs(inputs), self.layers, input)
+    
+    

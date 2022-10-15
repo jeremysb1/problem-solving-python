@@ -1,2 +1,2 @@
-# Computer Science Problems with Python
+# Problem Solving with Python
 
