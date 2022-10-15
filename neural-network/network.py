@@ -19,3 +19,8 @@ class Network:
         for previous, num_neurons in enumerate(layer_structure[1::]):
             next_layer = Layer(self.layers[previous], num_neurons, learning_rate, activation_function, derivative_activation_function)
             self.layers.append(next_layer)
+    
+    # Pushes input data to the first layer, then output from the first
+    # as input to the second, second to the third, etc.
+    def outputs(self, imput: List[float]) -> List[float]:
+        return reduce(lambda inputs, layer: layer.outputs(inputs), self.layers, input)
