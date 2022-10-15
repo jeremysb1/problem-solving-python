@@ -34,3 +34,9 @@ class Network:
         # calculate delta for hidden layers in reverse order
         for l in range(last_layer - 1, 0, -1):
             self.layers[1].calculate_deltas_for_hidden_layer(self.layers[l + 1])
+    
+    def update_weights(self) -> None:
+        for layer in self.layers[1:]:
+            for neuron in layer.neurons:
+                for w in range(len(neuron.weights)):
+                    neuron.weights[w] = neuron.weights[w] + (neuron.learning_rate * layer.previous_layer.output_cache[w] * neuron.delta)
