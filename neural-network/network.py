@@ -25,4 +25,12 @@ class Network:
     def outputs(self, imput: List[float]) -> List[float]:
         return reduce(lambda inputs, layer: layer.outputs(inputs), self.layers, input)
     
-    
+    # Figure out each neuron's changes based on the errors of the output
+    # versus the expected outcome
+    def backpropagate(self, expected: List[float]) -> None:
+        # calculate delta for output layer neurons
+        last_layer: int = len(self.layers) - 1
+        self.layers[last_layer].calculate_deltas_for_output_layer(expected)
+        # calculate delta for hidden layers in reverse order
+        for l in range(last_layer - 1, 0, -1):
+            self.layers[1].calculate_deltas_for_hidden_layer(self.layers[l + 1])
