@@ -18,14 +18,22 @@ class Layer:
             self.neurons.append(neuron)
         self.output_cache: List[float] = [0.0 for _ in range(num_neurons)]
 
-def outputs(self, inputs: List[float]) -> List[float]:
-    if self.previous_layer is None:
-        self.output_cache = inputs
-    else: 
-        self.output_cache = [n.output(inputs) for n in self.neurons]
-    return self.output_cache
+    def outputs(self, inputs: List[float]) -> List[float]:
+        if self.previous_layer is None:
+            self.output_cache = inputs
+        else: 
+            self.output_cache = [n.output(inputs) for n in self.neurons]
+        return self.output_cache
 
-# should only be called on output layer
-def calculate_deltas_for_output_layer(self, expected: List[float]) -> None:
-    for n in range(len(self.neurons)):
-        self.neurons[n].delta = self.neurons[n].derivative_activation_function(self.neurons[n].output_cache) * (expected[n] - self.output_cache[n])
+    # should only be called on output layer
+    def calculate_deltas_for_output_layer(self, expected: List[float]) -> None:
+        for n in range(len(self.neurons)):
+            self.neurons[n].delta = self.neurons[n].derivative_activation_function(self.neurons[n].output_cache) * (expected[n] - self.output_cache[n])
+
+    # should not be called on output layer
+    def calculate_deltas_for_hidden_layer(self, next_layer: Layer) -> None:
+        for index, neuron in enumerate(self.neurons):
+            next_weights: List[float] = [n.weights[index] for n in next_layer.neurons]
+            next_deltas: List[float] = [n.delta for n in next_layer.neurons]
+            sum_weights_and_deltas: float = dot_product(next_weights, next_deltas)
+            neuron.delta = neuron.derivative_activation_function(neuron.output_cache) * sum_weights_and_deltas
