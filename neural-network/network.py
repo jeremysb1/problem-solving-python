@@ -40,3 +40,10 @@ class Network:
             for neuron in layer.neurons:
                 for w in range(len(neuron.weights)):
                     neuron.weights[w] = neuron.weights[w] + (neuron.learning_rate * layer.previous_layer.output_cache[w] * neuron.delta)
+    
+    def train(self, inputs: List[List[float]], expecteds: List[List[float]]) -> None:
+        for location, xs in enumerate(inputs):
+            ys: List[float] = expecteds[location]
+            outs: List[float] = self.outputs(xs)
+            self.backpropagate(ys)
+            self.update_weights()
