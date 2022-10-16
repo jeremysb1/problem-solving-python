@@ -39,4 +39,7 @@ if __name__ == "__main__":
     for _ in range(10):
         wine_network.train(wine_trainers, wine_trainers_corrects)
     
-    
+    wine_testers: List[List[float]] = wine_parameters[150:178]
+    wine_testers_corrects: List[List[float]] = wine_species[150:178]
+    wine_results = wine_network.validate(wine_testers, wine_testers_corrects, wine_interpret_output)
+    print(f"{wine_results[0]} correct of {wine_results[1]} = {wine_results[2] * 100}%")
