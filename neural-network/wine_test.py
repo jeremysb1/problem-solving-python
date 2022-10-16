@@ -33,6 +33,10 @@ if __name__ == "__main__":
             return 2
         else:
             return 3
-            
-        
-
+    
+    wine_trainers: List[List[float]] = wine_parameters[0:150]
+    wine_trainers_corrects: List[List[float]] = wine_classifications[0:150]
+    for _ in range(10):
+        wine_network.train(wine_trainers, wine_trainers_corrects)
+    
+    
