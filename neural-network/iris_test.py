@@ -8,7 +8,7 @@ if __name__ == "__main__":
     iris_parameters: List[List[float]] = []
     iris_classifications: List[List[float]] = []
     iris_species: List[str] = []
-    with open('iris.csv', mode='r') as iris_file:
+    with open('neural-network/iris.csv', mode='r') as iris_file:
         irises: List = list(csv.reader(iris_file))
         shuffle(irises)
         for iris in irises:
@@ -21,6 +21,7 @@ if __name__ == "__main__":
                 iris_classifications.append([0.0, 1.0, 0.0])
             else:
                 iris_classifications.append([0.0, 0.0, 1.0])
+            iris_species.append(species)
     normalize_by_feature_scaling(iris_parameters)
 
     iris_network: Network = Network([4, 6, 3], 0.3)
@@ -30,9 +31,9 @@ if __name__ == "__main__":
             return "Iris-setosa"
         elif max(output) == output[1]:
             return "Iris-versicolor"
-        else: 
-            return "Iris-verginica"
-    
+        else:
+            return "Iris-virginica"
+
     iris_trainers: List[List[float]] = iris_parameters[0:140]
     iris_trainers_corrects: List[List[float]] = iris_classifications[0:140]
     for _ in range(50):
