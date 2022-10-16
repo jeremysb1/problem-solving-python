@@ -23,3 +23,5 @@ if __name__ == "__main__":
                 wine_classifications.append([0.0, 0.0, 1.0])
             wine_species.append(species)
     normalize_by_feature_scaling(wine_parameters)
+
+    wine_network: Network = Network[(13, 7, 3), 0.9]
