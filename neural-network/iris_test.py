@@ -38,4 +38,7 @@ if __name__ == "__main__":
     for _ in range(50):
         iris_network.train(iris_trainers, iris_trainers_corrects)
 
-    
+    iris_testers: List[List[float]] = iris_parameters[140:150]
+    iris_testers_corrects: List[str] = iris_species[140:150]
+    iris_results = iris_network.validate(iris_testers, iris_testers_corrects, iris_interpret_output)
+    print(f"{iris_results[0]} correct of {iris_results[1]} = {iris_results[2] * 100}%")
