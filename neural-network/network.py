@@ -1,5 +1,4 @@
 from __future__ import annotations
-from termios import N_TTY
 from typing import List, Callable, TypeVar, Tuple
 from functools import reduce
 from layer import Layer
