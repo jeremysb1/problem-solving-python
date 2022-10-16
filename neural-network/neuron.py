@@ -1,4 +1,4 @@
-from neuron import List, Callable
+from typing import List, Callable
 from util import dot_product
 
 class Neuron:
