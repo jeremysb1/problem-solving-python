@@ -14,3 +14,7 @@ class Board(ABC):
     @abstractmethod
     def turn(self) -> Piece:
         ...
+    
+    @abstractmethod
+    def move(slef, location: Move) -> Board:
+        ...
