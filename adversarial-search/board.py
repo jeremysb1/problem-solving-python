@@ -18,3 +18,21 @@ class Board(ABC):
     @abstractmethod
     def move(slef, location: Move) -> Board:
         ...
+    
+    @property
+    @abstractmethod
+    def legal_moves(self) -> List[Move]:
+        ...
+    
+    @property
+    @abstractmethod
+    def is_win(self) -> bool:
+        ...
+    
+    @property
+    def is_draw(self) -> bool:
+        return (not self.is_win) and (len(self.legal_moves) == 0)
+    
+    @abstractmethod
+    def evaluate(self, player: Piece) -> float:
+        ...
