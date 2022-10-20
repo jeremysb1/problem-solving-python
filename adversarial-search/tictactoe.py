@@ -7,3 +7,16 @@ class TTTPiece(Piece, Enum):
     X = "X"
     O = "O"
     E = " "
+
+    @property
+    def opposite(self) -> TTTPiece:
+        if self == TTTPiece.X:
+            return TTTPiece.O
+        elif self == TTTPiece.O:
+            return TTTPiece.X
+        else:
+            return TTTPiece.E
+    
+def __str__(self) -> str:
+    return self.value
+
