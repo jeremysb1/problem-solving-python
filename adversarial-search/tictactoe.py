@@ -20,3 +20,12 @@ class TTTPiece(Piece, Enum):
 def __str__(self) -> str:
     return self.value
 
+class TTTBoard(Board):
+    def __init__(self, position: List[TTTPiece] = [TTTPiece.E] * 9, turn: TTTPiece = TTTPiece.X) -> None:
+        self.position: List[TTTPiece] = position
+        self._turn: TTTPiece = turn
+
+    @property
+    def turn(self) -> Piece:
+        return self._piece
+    
