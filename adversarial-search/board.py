@@ -8,3 +8,9 @@ class Piece:
     @property
     def opposite(self) -> Piece:
         raise NotImplementedError("Should be implemented by subclasses.")
+
+class Board(ABC):
+    @property
+    @abstractmethod
+    def turn(self) -> Piece:
+        ...
