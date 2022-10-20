@@ -16,7 +16,7 @@ class Board(ABC):
         ...
     
     @abstractmethod
-    def move(slef, location: Move) -> Board:
+    def move(self, location: Move) -> Board:
         ...
     
     @property
